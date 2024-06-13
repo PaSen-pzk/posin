@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>blog-parent</artifactId>
+        <groupId>com.posin.blog</groupId>
+        <version>1219.1.2023</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>blog-security</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <!--Token生成与解析-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+        <!-- 模块依赖 -->
+        <dependency>
+            <groupId>com.posin.blog</groupId>
+            <artifactId>blog-model</artifactId>
+            <version>${posin-blog.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.posin.blog</groupId>
+            <artifactId>blog-config</artifactId>
+            <version>${posin-blog.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.posin.blog</groupId>
+            <artifactId>blog-commons</artifactId>
+            <version>${posin-blog.version}</version>
+        </dependency>
+    </dependencies>
+
+</project>

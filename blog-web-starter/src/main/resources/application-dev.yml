@@ -1,0 +1,43 @@
+spring:
+  application:
+   name: ui-web-view
+  # 数据库配置
+  datasource:
+   type: com.alibaba.druid.pool.DruidDataSource
+   url: jdbc:mysql://127.0.0.1:3306/posin_blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+   username: root
+   password: posin@1998
+   driver-class-name: com.mysql.jdbc.Driver
+  druid:
+   one:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/posin_blog
+    username: root
+    password: posin@1998
+    initial-size: 10
+    max-active: 10
+    min-idle: 5
+    max-wait: 60000
+   two:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/posin_blog
+    username: root
+    password: posin@1998
+    initial-size: 10
+    max-active: 10
+    min-idle: 5
+    max-wait: 60000
+  jdbc:
+   template:
+    max-rows: 3
+
+server:
+ port: 8080
+ servlet:
+  context-path: /${spring.application.name}
+
+services:
+ admin_url: http://blog.posin.com:9000/blog-admin-service/
+ blog_url: http://blog.posin.com:9000/blog-front-service/
+ ui_sys_url: http://blog.posin.com:9000/view/
+

@@ -1,0 +1,61 @@
+
+spring:
+  application:
+    name: blog-admin-service
+  # 数据库配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/posin_blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: posin@1998
+    driver-class-name: com.mysql.jdbc.Driver
+  druid:
+    one:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/posin_blog
+      username: root
+      password: posin@1998
+      initial-size: 10
+      max-active: 10
+      min-idle: 5
+      max-wait: 60000
+    two:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/posin_blog
+      username: root
+      password: posin@1998
+      initial-size: 10
+      max-active: 10
+      min-idle: 5
+      max-wait: 60000
+  jdbc:
+    template:
+      max-rows: 3
+server:
+  port: 8090
+  servlet:
+    context-path: /${spring.application.name}
+
+mybatis-plus:
+  type-aliases-package: com.posin.common.vo # model 的 package
+  mapper-locations: classpath*:mapper/*Mapper.xml # xml位置
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 日志
+    map-underscore-to-camel-case: true
+    auto-mapping-behavior: full
+  global-config:
+    # 逻辑删除配置
+    db-config:
+      # 删除前
+      logic-not-delete-value: 0
+      # 删除后
+      logic-delete-value: 1
+      # 表名前缀
+      table-prefix: blog_
+#    configuration-properties:
+#      prefix: ma_ # 设置自定义sql中表名带前缀 select * from ${prefix}user
+
+sys:
+  url:
+    login_url: 'http://blog.posin.com:9000/view/login_'
+    portal_url: 'http://blog.posin.com:9000/view/index'

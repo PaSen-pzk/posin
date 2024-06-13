@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.posin.manage.dao.AdminMenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.posin.blog.entity.AdminMenu">
+        <id column="id" property="id" />
+        <result column="module_id" property="moduleId" />
+        <result column="parent_id" property="parentId" />
+        <result column="en_code" property="enCode" />
+        <result column="full_name" property="fullName" />
+        <result column="icon" property="icon" />
+        <result column="url_address" property="urlAddress" />
+        <result column="target" property="target" />
+        <result column="role" property="role" />
+    </resultMap>
+
+    <resultMap id="menuTreeResult" type="com.posin.blog.entity.AdminMenu" extends="BaseResultMap">
+        <collection property="childs"
+                    column="{parentId=module_id}"
+                    select="com.posin.manage.dao.AdminMenuMapper.querySubMenuList"/>
+    </resultMap>
+
+    <select id="querySubMenuList" resultMap="BaseResultMap">
+        select *
+        from blog_admin_menu
+        where parent_id = #{parentId} and status=1 order by `order`
+    </select>
+
+    <select id="queryMenuTree" resultMap="menuTreeResult">
+        select * from blog_admin_menu where role=#{role} and parent_id='0' and status=1 order by `order`
+    </select>
+
+    <resultMap id="BaseMenuWebTree" type="com.posin.blog.dto.MenuTreeDTO">
+        <id column="id" property="id" />
+        <result column="module_id" property="moduleId" />
+        <result column="parent_id" property="parentId" />
+        <result column="en_code" property="enCode" />
+        <result column="full_name" property="label" />
+        <result column="icon" property="icon"/>
+        <result column="url_address" property="urlAddress" />
+        <result column="target" property="target" />
+        <result column="role" property="role" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <resultMap id="completeMenuWebTreeResult" type="com.posin.blog.dto.MenuTreeDTO" extends="BaseMenuWebTree">
+        <collection property="children"
+                    column="{parentId=module_id}"
+                    select="com.posin.manage.dao.AdminMenuMapper.querySubMenuTree"/>
+    </resultMap>
+
+    <select id="queryCompleteMenuTree" resultMap="completeMenuWebTreeResult">
+        select * from blog_admin_menu where role=#{role} and parent_id='0' order by `order`
+    </select>
+
+    <select id="querySubMenuTree" resultMap="completeMenuWebTreeResult">
+        select *
+        from blog_admin_menu
+        where parent_id = #{parentId} order by `order`
+    </select>
+
+    <select id="getAuthority" resultType="java.lang.String">
+        select permission
+        from blog_admin_menu
+        where id in (select mid from blog_role_menu where rid in (select role_id from blog_user_role where user_id=#{uid}))
+    </select>
+
+</mapper>

@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: ${sys-admin.name}
+server:
+  port: 8089
+  servlet:
+    context-path: /${sys-admin.name}
+
+# rsa配置
+rsa:
+  key:
+    private-key-file: classpath:/key/priKey.key
+    public-key-file: classpath:/key/pubKey.key
+    secret: (EMOK:)_$^11244^%$_(IS:)_@@++--(COOL:)_++++_.sds_(GUY:)
+
+sys-admin:
+  name: blog-boot-service

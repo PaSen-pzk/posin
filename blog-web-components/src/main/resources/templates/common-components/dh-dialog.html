@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:v-bind="http://www.w3.org/1999/xhtml"
+  lang="en"
+>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <div th:fragment="dh-dialog">
+      <template id="dh-dialog">
+        <el-dialog :visible.sync="showDialog" :width="width" :height="height" title="流程列表">
+          <el-row class="el-row-bill">
+            <el-col :span="24">
+              <iframe id="myIfarme" style="width: 100%;height: 400px;"
+                      :src="url"
+                      scrolling="no" onload="changIframeHeight()" frameborder="0"></iframe>
+            </el-col>
+          </el-row>
+          <div slot="footer">
+            <el-button type="primary" @click="showDialog=false">关闭</el-button>
+          </div>
+        </el-dialog>
+      </template>
+      <script>
+        Vue.component("dh-dialog", {
+          template: "#dh-dialog",
+          name: "dh-dialog",
+          props: {
+            url: { type: String},
+            showDialog:{type:Boolean,default:false},
+            width:{type:String,default: '800px'},
+            height:{type:String,default: '600px'}
+          },
+          data:function () {
+                 return{
+
+                 }
+          }
+        });
+
+        function changIframeHeight() {
+          var iframe = document.getElementById("myIfarme");
+          //ifm.height = document.documentElement.clientHeight - 80;
+
+          if (iframe) {
+            var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+            if (iframeWin.document.body) {
+              iframe.height = iframeWin.document.body.scrollHeight;
+            }
+          }
+
+        }
+
+        window.onresize = function () {
+          changIframeHeight();
+        }
+      </script>
+    </div>
+  </body>
+</html>
