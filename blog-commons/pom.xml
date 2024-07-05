@@ -38,6 +38,7 @@
 <!--            <artifactId>blog-model</artifactId>-->
 <!--            <version>${posin-blog.version}</version>-->
 <!--        </dependency>-->
+
     </dependencies>
 
 </project>

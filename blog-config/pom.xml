@@ -46,6 +46,12 @@
             <version>3.3.0</version>
             <scope>compile</scope>
         </dependency>
+        <!-- JSch sftp上传下载的工具 -->
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.55</version>
+        </dependency>
     </dependencies>
 
 </project>
