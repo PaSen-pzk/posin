@@ -36,5 +36,11 @@
             <artifactId>blog-commons</artifactId>
             <version>${posin-blog.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.posin.blog</groupId>
+            <artifactId>blog-common-core</artifactId>
+            <version>1219.1.2023</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>

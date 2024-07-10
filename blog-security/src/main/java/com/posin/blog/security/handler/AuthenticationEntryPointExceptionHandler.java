@@ -2,8 +2,8 @@ package com.posin.blog.security.handler;
 
 import com.alibaba.fastjson.JSON;
 import com.posin.blog.constants.Constants;
-import com.posin.blog.security.util.ServletUtils;
 import com.posin.blog.vo.ResultVo;
+import com.posin.common.core.utils.ServletUtils;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;

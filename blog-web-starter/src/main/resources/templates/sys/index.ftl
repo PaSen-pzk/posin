@@ -102,13 +102,13 @@
             </form>
             <ul class="sidebar-menu" id="sidebar-menu">
                 <!--<li class="header">导航菜单</li>-->
-                <li class="treeview" v-for="menu in menus" :key="menu.id">
+                <li class="treeview" v-for="menu in menus" :key="menu.menuId">
                     <a href="#">
-                        <i :class="menu.icon"></i><span>{{menu.fullName}}</span><i class="fa fa-angle-left pull-right"></i>
+                        <i :class="menu.icon"></i><span>{{menu.menuName}}</span><i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu" v-if="menu.childs && menu.childs.length > 0">
-                        <li v-for="child in menu.childs" :key="child.id">
-                            <a class="menuItem" :data-id="child.moduleId" :href="child.urlAddress" target="_parent"><i :class="child.icon"></i>{{child.fullName}}</a>
+                        <li v-for="child in menu.childs" :key="child.menuId">
+                            <a class="menuItem" :data-id="child.parentId" :href="child.path" target="_parent"><i :class="child.icon"></i>{{child.menuName}}</a>
                         </li>
 
                     </ul>

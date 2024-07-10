@@ -1,7 +1,10 @@
 package com.posin.manage.controller;
 
+import com.posin.blog.security.model.LoginUser;
+import com.posin.blog.security.util.SecurityUtils;
 import com.posin.blog.vo.StdResultVo;
 import com.posin.blog.entity.AdminMenu;
+import com.posin.common.core.context.SecurityContextHolder;
 import com.posin.manage.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,11 +32,12 @@ public class MenuController {
      * 菜单列表
      * @return
      */
-    @PreAuthorize("hasAnyAuthority('menu:admin')")
-    @GetMapping("/list/{role}")
-    public StdResultVo<List<AdminMenu>> getList(@PathVariable("role") String role) {
+    @PreAuthorize("hasAnyAuthority('system:menu:list')")
+    @GetMapping("/getRouters")
+    public StdResultVo<List<AdminMenu>> getList() {
         StdResultVo<List<AdminMenu>> response = new StdResultVo();
-        List<AdminMenu> menuList = menuService.getList(role);
+        LoginUser loginUser = SecurityUtils.getLoginUser();
+        List<AdminMenu> menuList = menuService.getList(loginUser.getAdminUser().getId());
         response.setData(menuList);
         return response;
     }
@@ -42,10 +46,13 @@ public class MenuController {
      * 菜单列表
      * @return
      */
-    @GetMapping("/list/all/{role}")
-    public StdResultVo<List<AdminMenu>> getListAll(@PathVariable("role") String role) {
+    @PreAuthorize("hasAnyAuthority('system:menu:list')")
+    @GetMapping("/treeselect")
+    public StdResultVo<List<AdminMenu>> treeselect(AdminMenu menu) {
         StdResultVo<List<AdminMenu>> response = new StdResultVo();
-        List<AdminMenu> menuList = menuService.getListAll(role);
+        LoginUser loginUser = SecurityUtils.getLoginUser();
+        String userId = loginUser.getAdminUser().getId();
+        List<AdminMenu> menuList = menuService.getListAll(menu, userId);
         response.setData(menuList);
         return response;
     }

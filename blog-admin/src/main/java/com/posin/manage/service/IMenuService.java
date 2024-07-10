@@ -12,7 +12,7 @@ import java.util.List;
  * @description
  */
 public interface IMenuService extends IService<AdminMenu> {
-    List<AdminMenu> getList(String role);
+    List<AdminMenu> getList(String userId);
 
-    List<AdminMenu> getListAll(String role);
+    List<AdminMenu> getListAll(AdminMenu menu, String userId);
 }

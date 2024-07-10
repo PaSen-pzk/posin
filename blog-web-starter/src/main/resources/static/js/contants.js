@@ -38,8 +38,8 @@ const SERVICE_RESPONSE = {
 const ADMIN_SERVER = {
     SYS_LOGIN: "login",
     SYS_LOGINOUT: "loginOut",
-    MENU_TREE: "sys/menu/list/{0}",
-    MENU_COMPLETE_TREE: "sys/menu/list/all",
+    MENU_TREE: "sys/menu/getRouters",
+    MENU_COMPLETE_TREE: "sys/menu/treeselect",
     MENU_NODE_DELETE: "sys/menu/delete",
     MENU_NODE_ADD: "sys/menu/save",
     ARTICLE_DRAFT_SAVE: "sys/article/save"

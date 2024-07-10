@@ -2,6 +2,7 @@ package com.posin.blog.security.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.posin.blog.pojo.AdminUser;
+import com.posin.common.core.utils.StringUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -84,8 +85,10 @@ public class LoginUser implements UserDetails, Serializable {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         authorityList.forEach((authorityStr) -> {
-            SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(authorityStr);
-            grantedAuthorities.add(simpleGrantedAuthority);
+            if(StringUtils.isNotEmpty(authorityStr)) {
+                SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(authorityStr);
+                grantedAuthorities.add(simpleGrantedAuthority);
+            }
         });
         return grantedAuthorities;
     }

@@ -3,6 +3,7 @@ package com.posin.blog.security.filter;
 import com.posin.blog.cache.RedisCache;
 import com.posin.blog.security.model.LoginUser;
 import com.posin.blog.util.JwtUtils;
+import com.posin.common.core.constant.SecurityConstants;
 import io.jsonwebtoken.Claims;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -59,7 +60,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginUser,null, loginUser.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-
+        com.posin.common.core.context.SecurityContextHolder.set(SecurityConstants.LOGIN_USER, loginUser);
         // token存在且解析完了，则放行
         chain.doFilter(request, response);
     }

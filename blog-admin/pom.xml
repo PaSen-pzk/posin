@@ -74,5 +74,10 @@
             <artifactId>blog-security</artifactId>
             <version>${posin-blog.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.posin.blog</groupId>
+            <artifactId>blog-common-core</artifactId>
+            <version>${posin-blog.version}</version>
+        </dependency>
     </dependencies>
 </project>

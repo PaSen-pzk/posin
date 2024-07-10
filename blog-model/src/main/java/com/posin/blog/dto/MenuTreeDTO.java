@@ -19,13 +19,18 @@ public class MenuTreeDTO {
 
     private String id;
     private String label;
+    private String parentId;
+    private Integer orderNum;
     private List<MenuTreeDTO> children;
     private String moduleId;
-    private String parentId;
+    private String path;
+    private String type;
+    private Integer ifFrame;
+    private Integer visible;
+    private Integer status;
+    private String perms;
     private String enCode;
     private String icon;
-    private String urlAddress;
     private String target;
-    private Integer role;
-    private Integer status;
+
 }

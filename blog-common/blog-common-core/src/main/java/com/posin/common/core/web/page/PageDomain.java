@@ -1,6 +1,8 @@
 package com.posin.common.core.web.page;
 
 
+import com.posin.common.core.utils.StringUtils;
+
 /**
  * 分页数据
  *

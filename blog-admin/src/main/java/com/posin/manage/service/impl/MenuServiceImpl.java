@@ -18,12 +18,13 @@ import java.util.List;
 public class MenuServiceImpl extends ServiceImpl<AdminMenuMapper, AdminMenu> implements IMenuService {
 
     @Override
-    public List<AdminMenu> getList(String role) {
-        return baseMapper.queryMenuTree(role);
+    public List<AdminMenu> getList(String userId) {
+        return baseMapper.queryMenuTree(userId);
     }
 
     @Override
-    public List<AdminMenu> getListAll(String role) {
-        return baseMapper.queryCompleteMenuTree(role);
+    public List<AdminMenu> getListAll(AdminMenu menu, String userId) {
+        menu.getParams().put("userId", userId);
+        return baseMapper.queryCompleteMenuTree(menu);
     }
 }

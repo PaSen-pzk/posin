@@ -18,9 +18,9 @@ public interface AdminMenuMapper extends BaseMapper<AdminMenu> {
 
     List<AdminMenu> querySubMenuList(@Param("parentId")String parentId);
 
-    List<AdminMenu> queryMenuTree(@Param("role")String role);
+    List<AdminMenu> queryMenuTree(@Param("userId") String userId);
 
-    List<AdminMenu> queryCompleteMenuTree(@Param("role")String role);
+    List<AdminMenu> queryCompleteMenuTree(AdminMenu menu);
 
     List<String> getAuthority(@Param("uid")String uid);
 }

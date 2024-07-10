@@ -87,7 +87,7 @@ var vm=new Vue({
         //初始化数据
         loadMenuTree:function(){
             let that = this;
-            AjaxInvk(ADMIN_API_SERVICE + ADMIN_SERVER.MENU_COMPLETE_TREE + "/" + role,"","get",function (res) {
+            AjaxInvk(ADMIN_API_SERVICE + ADMIN_SERVER.MENU_COMPLETE_TREE,"","get",function (res) {
                 if(res.code == SERVICE_RESPONSE.SUCCESS.CODE){
                     console.log(res);
                     that.menuTree = res.data;

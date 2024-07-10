@@ -1,7 +1,7 @@
 package com.posin.common.core.utils;
 
-import com.ruoyi.common.core.constant.Constants;
-import com.ruoyi.common.core.text.StrFormatter;
+import com.posin.common.core.constant.Constants;
+import com.posin.common.core.text.StrFormatter;
 import org.springframework.util.AntPathMatcher;
 
 import java.util.Collection;

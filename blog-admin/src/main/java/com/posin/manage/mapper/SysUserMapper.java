@@ -14,9 +14,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SysUserMapper {
 
-    @Select("SELECT * from blog_admin_user where name=#{username}")
+    @Select("SELECT * from blog_user where user_name=#{username}")
     AdminUser queryByUserName(@Param("username") String username);
 
-    @Select("SELECT id, name username, password, status FROM blog_user WHERE name = #{name}")
-    AdminUser selectByName(String name);
+    @Select("SELECT user_id id, user_name username, password, status FROM blog_user WHERE is_deleted = 0 and user_name = #{name}")
+    AdminUser selectByName(@Param("name") String name);
 }
