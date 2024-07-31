@@ -3,6 +3,8 @@ package com.posin.manage.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.posin.manage.model.ArticleSimple;
 
+import java.util.List;
+
 /**
  * @author zkP
  * @date 2024/5/29 20:12
@@ -11,4 +13,5 @@ import com.posin.manage.model.ArticleSimple;
  */
 public interface IArticleService extends IService<ArticleSimple> {
 
+    List<ArticleSimple> list(ArticleSimple articleSimple);
 }

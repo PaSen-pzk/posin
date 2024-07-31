@@ -23,9 +23,10 @@
         <module>blog-contact</module>
         <module>blog-web-starter</module>
         <module>blog-model</module>
-        <module>blog-web-components</module>
+
         <module>blog-security</module>
         <module>blog-common</module>
+        <module>blog-web</module>
     </modules>
     <name>posin</name>
     <description>Posin`s blog for Spring Boot</description>

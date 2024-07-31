@@ -7,6 +7,7 @@ import com.posin.manage.service.IArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -27,6 +28,12 @@ public class ArticleController {
         articleSimple.setArticleId(UUID.randomUUID().toString().replace("-",""));
         boolean save = articleService.save(articleSimple);
         return ResultVo.success(save);
+    }
+
+    @GetMapping("/list")
+    public ResultVo list(ArticleSimple articleSimple) {
+        List<ArticleSimple> articleList = articleService.list(articleSimple);
+        return ResultVo.success(articleList);
     }
 
 }

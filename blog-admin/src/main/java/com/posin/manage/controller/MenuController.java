@@ -29,7 +29,19 @@ public class MenuController {
     private IMenuService menuService;
 
     /**
-     * 菜单列表
+     * 获取菜单列表
+     */
+    @PreAuthorize("hasAnyAuthority('system:menu:list')")
+    @GetMapping("/list")
+    public StdResultVo<List<AdminMenu>> list(AdminMenu menu)
+    {
+        Long userId = SecurityUtils.getUserId();
+        List<AdminMenu> menus = menuService.selectMenuList(menu, userId);
+        return StdResultVo.success(menus);
+    }
+
+    /**
+     * 登录人权限内菜单列表
      * @return
      */
     @PreAuthorize("hasAnyAuthority('system:menu:list')")
@@ -43,10 +55,8 @@ public class MenuController {
     }
 
     /**
-     * 菜单列表
-     * @return
+     * 获取菜单下拉树列表
      */
-    @PreAuthorize("hasAnyAuthority('system:menu:list')")
     @GetMapping("/treeselect")
     public StdResultVo<List<AdminMenu>> treeselect(AdminMenu menu) {
         StdResultVo<List<AdminMenu>> response = new StdResultVo();
@@ -56,5 +66,7 @@ public class MenuController {
         response.setData(menuList);
         return response;
     }
+
+
 
 }

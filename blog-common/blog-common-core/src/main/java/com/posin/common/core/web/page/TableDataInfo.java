@@ -19,7 +19,7 @@ public class TableDataInfo implements Serializable
     private List<?> rows;
 
     /** 消息状态码 */
-    private int code;
+    private String code;
 
     /** 消息内容 */
     private String msg;
@@ -63,12 +63,12 @@ public class TableDataInfo implements Serializable
         this.rows = rows;
     }
 
-    public int getCode()
+    public String getCode()
     {
         return code;
     }
 
-    public void setCode(int code)
+    public void setCode(String code)
     {
         this.code = code;
     }

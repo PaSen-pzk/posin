@@ -22,7 +22,7 @@ import java.util.List;
 @Getter
 @Setter
 @TableName("blog_menu")
-public class AdminMenu extends BaseEntity {
+public class AdminMenu {
 
     @TableId("menu_id")
     private String menuId;
@@ -41,7 +41,7 @@ public class AdminMenu extends BaseEntity {
     @TableField("visible")
     private int visible;
     @TableField("status")
-    private int status;
+    private Byte status;
     @TableField("perms")
     private String perms;
     @TableField("icon")
@@ -62,5 +62,6 @@ public class AdminMenu extends BaseEntity {
     private Date updateTime;
     @TableField("remark")
     private String remark;
+    @TableField(exist = false)
     private List<AdminMenu> childs;
 }

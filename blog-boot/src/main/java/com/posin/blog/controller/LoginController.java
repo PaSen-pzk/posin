@@ -2,6 +2,7 @@ package com.posin.blog.controller;
 
 import com.posin.blog.constants.Constants;
 import com.posin.blog.pojo.AdminUser;
+import com.posin.common.core.constant.HttpStatus;
 import com.posin.manage.service.ISysUserService;
 import com.posin.blog.vo.ResultVo;
 import com.posin.manage.vo.UserVo;
@@ -32,6 +33,6 @@ public class LoginController {
     @GetMapping("/loginOut")
     public ResultVo loginOut() {
         sysUserService.loginOut();
-        return ResultVo.success(Constants.Code.SUCCESS);
+        return ResultVo.success(HttpStatus.SUCCESS);
     }
 }

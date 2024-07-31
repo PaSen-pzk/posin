@@ -15,4 +15,6 @@ public interface IMenuService extends IService<AdminMenu> {
     List<AdminMenu> getList(String userId);
 
     List<AdminMenu> getListAll(AdminMenu menu, String userId);
+
+    List<AdminMenu> selectMenuList(AdminMenu menu, Long userId);
 }

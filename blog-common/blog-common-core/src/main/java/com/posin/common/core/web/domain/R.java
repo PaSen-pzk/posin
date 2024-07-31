@@ -37,7 +37,7 @@ public class R extends HashMap<String, Object>
      * @param code 状态码
      * @param msg 返回内容
      */
-    public R(int code, String msg)
+    public R(String code, String msg)
     {
         super.put(CODE_TAG, code);
         super.put(MSG_TAG, msg);
@@ -50,7 +50,7 @@ public class R extends HashMap<String, Object>
      * @param msg 返回内容
      * @param data 数据对象
      */
-    public R(int code, String msg, Object data)
+    public R(String code, String msg, Object data)
     {
         super.put(CODE_TAG, code);
         super.put(MSG_TAG, msg);
@@ -166,7 +166,7 @@ public class R extends HashMap<String, Object>
      * @param msg 返回内容
      * @return 错误消息
      */
-    public static R error(int code, String msg)
+    public static R error(String code, String msg)
     {
         return new R(code, msg, null);
     }

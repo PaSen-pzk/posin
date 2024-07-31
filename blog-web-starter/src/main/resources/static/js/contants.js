@@ -3,41 +3,44 @@ const SERVICE_RESPONSE = {
      * 成功
      */
     SUCCESS: {
-        CODE: "000000",
+        // CODE: "000000",
+        CODE: "200",
         MESSAGE: "成功"
     },
     /**
      * 认证失败
      */
     AUTHORIZATION_ERROR: {
-        CODE:"500205",
+        // CODE:"500205",
+        CODE:"501",
         MESSAGE:"认证失败"
     },
     /**
      * 无权限
      */
     NO_AUTHORITY: {
-        CODE:"NO_AUTHORITY",
+        CODE:"503",
         MESSAGE:"无权限"
     },
     /**
      * 业务异常
      */
     BUSSINESS_ERROR: {
-        CODE:"2000",
+        CODE:"500",
         MESSAGE:"操作失败"
     },
     /**
      * API异常
      */
     INVOKE_ERROR: {
-        CODE:"2100",
+        CODE:"404",
         MESSAGE:"服务不可用"
     }
 }
 const ADMIN_SERVER = {
     SYS_LOGIN: "login",
     SYS_LOGINOUT: "loginOut",
+    MENU_MANAGE_LIST: "sys/menu/list",
     MENU_TREE: "sys/menu/getRouters",
     MENU_COMPLETE_TREE: "sys/menu/treeselect",
     MENU_NODE_DELETE: "sys/menu/delete",

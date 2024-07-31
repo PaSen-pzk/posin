@@ -1,6 +1,7 @@
 package com.posin.blog.vo;
 
 import com.posin.blog.constants.Constants;
+import com.posin.common.core.constant.HttpStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,7 +30,7 @@ public class ResultVo<T> implements Serializable {
     }
 
     public static <T> ResultVo<T> success(Object obj) {
-        return (ResultVo<T>) ResultVo.builder().code(Constants.Code.SUCCESS).msg(Constants.Msg.SUCCESS).data(obj).build();
+        return (ResultVo<T>) ResultVo.builder().code(HttpStatus.SUCCESS).msg(Constants.Msg.SUCCESS).data(obj).build();
     }
 
     public static <T> ResultVo<T> success(String code) {

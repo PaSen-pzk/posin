@@ -27,7 +27,7 @@ public class MenuTreeDTO {
     private String type;
     private Integer ifFrame;
     private Integer visible;
-    private Integer status;
+    private Byte status;
     private String perms;
     private String enCode;
     private String icon;

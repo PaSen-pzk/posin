@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>blog-parent</artifactId>
+        <artifactId>blog-web</artifactId>
         <groupId>com.posin.blog</groupId>
         <version>1219.1.2023</version>
     </parent>
@@ -109,11 +109,11 @@
             <version>${chartjs.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.webjars.npm</groupId>
-            <artifactId>axios</artifactId>
-            <version>1.7.1</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.webjars.npm</groupId>-->
+<!--            <artifactId>axios</artifactId>-->
+<!--            <version>1.7.1</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>

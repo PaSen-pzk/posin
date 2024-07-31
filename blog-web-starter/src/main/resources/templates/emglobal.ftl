@@ -26,6 +26,7 @@
         <script src="${UI_WEB_SERVICE}js/interceptor.js"></script>
         <script src="${UI_WEB_SERVICE}js/contants.js"></script>
         <script src="${UI_WEB_SERVICE}js/genutils.js"></script>
+        <script src="${UI_WEB_SERVICE}js/blog.js"></script>
         <link rel="stylesheet" href="${UI_WEB_SERVICE}webjars/element/css/index.css">
         <link rel="stylesheet" href="${UI_WEB_SERVICE}webjars/icon-font/iconfont.css">
     </div>
