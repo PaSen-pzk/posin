@@ -153,13 +153,15 @@ var vm=new Vue({
         },
         /** 修改按钮操作 */
         handleUpdate:function(row) {
-            this.reset();
-            this.getTreeselect();
-            // getMenu(row.menuId).then(response => {
-            //     this.form = response.data;
-            //     this.open = true;
-            //     this.title = "修改菜单";
-            // });
+            let that = this;
+            that.reset();
+            that.getTreeselect();
+            getMenu(row.menuId).then(function (response) {
+                let res = response.data;
+                that.form = res.data;
+                that.open = true;
+                that.title = "修改菜单";
+            });
         },
         /** 提交按钮 */
         submitForm:function() {
@@ -174,18 +176,22 @@ var vm=new Vue({
                         //     this.getList();
                         // });
                     } else {
-                        AjaxInvk(getDataBaseUrl() + ADMIN_SERVER.MENU_NODE_ADD,JSON.stringify(that.form),"post",function (res) {
-                            console.log("保存菜單", JSON.stringify(res));
+                        // AjaxInvk(getDataBaseUrl() + ADMIN_SERVER.MENU_NODE_ADD,JSON.stringify(that.form),"post",function (res) {
+                        //     console.log("保存菜單", JSON.stringify(res));
+                        //     if(res.code == SERVICE_RESPONSE.SUCCESS.CODE){
+                        //         that.open = false;
+                        //         that.loadMenuTree();
+                        //     }
+                        // });
+                        addMenu(this.form).then(response => {
+                            console.log("保存菜單", JSON.stringify(response));
+                            let res = response.data;
                             if(res.code == SERVICE_RESPONSE.SUCCESS.CODE){
                                 that.open = false;
                                 that.loadMenuTree();
+                                this.$modal.msgSuccess("新增成功");
                             }
                         });
-                        // addMenu(this.form).then(response => {
-                        //     this.$modal.msgSuccess("新增成功");
-                        //     this.open = false;
-                        //     this.getList();
-                        // });
                     }
                 }
             });
@@ -198,14 +204,35 @@ var vm=new Vue({
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(function() {
-                return that.deleteModule(row.menuId);
-            }).then(() => {
-                that.loadMenuTree();
-                that.$message({
-                    type: 'success',
-                    message: '删除成功!'
-                });
-            }).catch(() => {});
+                delMenu(row.menuId).then((response) => {
+                    let res = response.data;
+                    if(res.code == SERVICE_RESPONSE.SUCCESS.CODE){
+                        that.loadMenuTree();
+                        that.$message({
+                            type: 'success',
+                            message: '删除成功!'
+                        });
+                    } else {
+                        if(res.message) {
+                            that.$message({
+                                type: 'error',
+                                message: res.message
+                            });
+                        } else {
+                            that.$message({
+                                type: 'error',
+                                message: '删除失败!'
+                            });
+                        }
+                    }
+
+                }).catch(() => {
+                    that.$message({
+                        type: 'error',
+                        message: '删除失败!'
+                    });
+                })
+            });
         },
         addMenu(node) {
             console.log("--添加菜单节点--");
@@ -270,25 +297,17 @@ var vm=new Vue({
                 status: null
             }
         },
-        deleteModule(data) {
+        deleteModule(menuId) {
             let that = this;
-            console.log(data);
+            console.log(menuId);
             this.$confirm('此操作将永久删除该项, 是否继续?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(() => {
-                AjaxInvk(getDataBaseUrl() + ADMIN_SERVER.MENU_NODE_DELETE + "?id=" + data.id,"","get",function (res) {
-                    if(res.code == SERVICE_RESPONSE.SUCCESS.CODE){
-                        console.log(res);
-                        this.$message({
-                            type: 'success',
-                            message: '删除成功!'
-                        });
-                    }
-                });
+                return delMenu(menuId);
             }).catch(() => {
-                this.$message({
+                that.$message({
                     type: 'info',
                     message: '删除失败，请稍后重试！'
                 });

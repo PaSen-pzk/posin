@@ -1,8 +1,11 @@
 package com.posin.manage.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.posin.blog.cache.RedisCache;
 import com.posin.blog.pojo.AdminUser;
 import com.posin.blog.security.model.LoginUser;
+import com.posin.manage.mapper.SysUserMapper;
+import com.posin.manage.service.IMenuService;
 import com.posin.manage.service.ISysUserService;
 import com.posin.blog.util.JwtUtils;
 import com.posin.manage.vo.UserVo;
@@ -11,8 +14,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -22,13 +27,16 @@ import java.util.Objects;
  * @description
  */
 @Service
-public class SysUserServiceImpl implements ISysUserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, AdminUser> implements ISysUserService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
     private RedisCache redisCache;
+
+    @Autowired
+    private IMenuService menuService;
 
     @Override
     public UserVo login(AdminUser user) {
@@ -62,5 +70,18 @@ public class SysUserServiceImpl implements ISysUserService {
         UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
         LoginUser principal = (LoginUser) authentication.getPrincipal();
         redisCache.deleteObject("bloglogin:" + principal.getAdminUser().getId());
+    }
+
+    @Override
+    public LoginUser getLoginUserInfo(String userId) {
+        AdminUser adminUser = baseMapper.selectById(userId);
+        // 判断用户是否存在
+        if(userId == null) {
+            throw new UsernameNotFoundException("用户不存在");
+        }
+        // 添加权限
+        List<String> authorities = menuService.getAuthority(adminUser.getId());
+        // 返回UserDetails实现类
+        return new LoginUser(adminUser, authorities);
     }
 }

@@ -21,11 +21,10 @@
             padding: 0; /* 移除默认填充 */
         }
     </style>
-
-</head>
-
-<body>
     <th:block th:replace="emglobal::em-global"></th:block>
+</head>
+<body>
+<th:block th:replace="emglobal::em-global-js"></th:block>
     <div id="adminApp">
         <section id="main-wrapper" class="theme-default">
             <header id="header">
@@ -33,7 +32,7 @@
                 <div class="brand">
                     <a href="" class="logo">
                         <i class="icon-layers"></i>
-                        <span>NEU</span>BOARD</a>
+                        <span>内容</span>管理平台</a>
                 </div>
                 <!--logo end-->
                 <ul class="nav navbar-nav navbar-left">
@@ -58,9 +57,9 @@
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="meta">
                             <span class="avatar">
-                                <img th:src="@{/picture/profile.jpg}" class="img-circle" alt="">
+                                <img :src="loginUser.avatar" class="img-circle" alt="">
                             </span>
-                        <span class="text">Mike Adams</span>
+                        <span class="text">{{loginUser.nickName}}</span>
                         <span class="caret"></span>
                         </span>
                         </a>
@@ -78,7 +77,7 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="javascript:void(0);">
+                                <a href="javascript:void(0);" @click="goMyAccount">
                                 <span class="icon"><i class="fa fa-user"></i>
                                 </span>My Account</a>
                             </li>
@@ -94,7 +93,7 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="javascript:void(0);">
+                                <a href="javascript:void(0);" @click="logout">
                                 <span class="icon"><i class="fa fa-sign-out"></i>
                                 </span>Logout</a>
                             </li>
@@ -116,11 +115,13 @@
             <aside class="sidebar sidebar-left">
                 <div class="sidebar-profile">
                     <div class="avatar">
-                        <img class="img-circle profile-image" th:src="@{/picture/profile.jpg}" alt="profile">
+                        <img class="img-circle profile-image" :src="loginUser.avatar" alt="profile">
                         <i class="on border-dark animated bounceIn"></i>
                     </div>
                     <div class="profile-body dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><h4>Mike Adams <span class="caret"></span></h4></a>
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><h4>
+                            {{loginUser.nickName}}
+                            <span class="caret"></span></h4></a>
                         <small class="title">Front-end Developer</small>
                         <ul class="dropdown-menu animated fadeInRight" role="menu">
                             <li class="profile-progress">
@@ -135,7 +136,7 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="javascript:void(0);">
+                                <a href="javascript:void(0);" @click="goMyAccount">
                                 <span class="icon"><i class="fa fa-user"></i>
                                 </span>My Account</a>
                             </li>
@@ -151,7 +152,7 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="javascript:void(0);">
+                                <a href="javascript:void(0);" @click="logout">
                                 <span class="icon"><i class="fa fa-sign-out"></i>
                                 </span>Logout</a>
                             </li>
@@ -226,7 +227,7 @@
                             <div class="row">
                                 <div class="col-md-3">
                                 <span class="avatar">
-                        <img th:src="@{/picture/avatar3.png}" class="img-circle" alt="">
+                        <img :src="loginUser.avatar" class="img-circle" alt="">
                           <i class="on animated bounceIn"></i>
                         </span>
                                 </div>
@@ -490,15 +491,14 @@
     <!--Load these page level functions-->
     <script th:src="@{/js/admin-app.vue.js}"></script>
     <script>
-    $(document).ready(function() {
-        app.dateRangePicker();
-        app.chartJs();
-        app.weather();
-        app.spinStart();
-        app.spinStop();
-    });
+        $(document).ready(function() {
+            app.dateRangePicker();
+            app.chartJs();
+            app.weather();
+            app.spinStart();
+            app.spinStop();
+        });
     </script>
-
 </body>
 
 </html>

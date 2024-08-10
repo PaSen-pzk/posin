@@ -4,14 +4,14 @@ import com.posin.blog.security.model.LoginUser;
 import com.posin.blog.security.util.SecurityUtils;
 import com.posin.blog.vo.StdResultVo;
 import com.posin.blog.entity.AdminMenu;
+import com.posin.common.core.constant.UserConstants;
 import com.posin.common.core.context.SecurityContextHolder;
+import com.posin.common.core.utils.StringUtils;
 import com.posin.manage.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -67,6 +67,52 @@ public class MenuController {
         return response;
     }
 
+    /**
+     * 根据菜单编号获取详细信息
+     */
+    @GetMapping(value = "/{menuId}")
+    public StdResultVo<AdminMenu> getInfo(@PathVariable String menuId){
+        StdResultVo<AdminMenu> response = new StdResultVo();
+        AdminMenu menu = menuService.selectMenuById(menuId);
+        response.setData(menu);
+        return response;
+    }
 
+    /**
+     * 新增菜单
+     */
+    @PreAuthorize("hasAnyAuthority('system:menu:add')")
+    @PostMapping
+    public StdResultVo<?> add(@Validated @RequestBody AdminMenu menu)
+    {
+        if (!menuService.checkMenuNameUnique(menu))
+        {
+            return StdResultVo.error("新增菜单'" + menu.getMenuName() + "'失败，菜单名称已存在");
+        }
+        else if (UserConstants.YES_FRAME.equals(menu.getIsFrame()) && !StringUtils.ishttp(menu.getPath()))
+        {
+            return StdResultVo.error("新增菜单'" + menu.getMenuName() + "'失败，地址必须以http(s)://开头");
+        }
+        menu.setCreateBy(SecurityUtils.getUsername());
+        return StdResultVo.success(menuService.insertMenu(menu));
+    }
+
+    /**
+     * 删除菜单
+     */
+    @PreAuthorize("hasAnyAuthority('system:menu:remove')")
+    @DeleteMapping("/{menuId}")
+    public StdResultVo<?> remove(@PathVariable("menuId") String menuId)
+    {
+        if (menuService.hasChildByMenuId(menuId))
+        {
+            return StdResultVo.error("存在子菜单,不允许删除");
+        }
+        if (menuService.checkMenuExistRole(menuId))
+        {
+            return StdResultVo.error("菜单已分配,不允许删除");
+        }
+        return StdResultVo.success(menuService.deleteMenuById(menuId));
+    }
 
 }

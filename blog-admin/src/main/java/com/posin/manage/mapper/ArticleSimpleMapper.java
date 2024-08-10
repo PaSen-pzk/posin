@@ -1,4 +1,4 @@
-package com.posin.manage.dao;
+package com.posin.manage.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.posin.manage.model.ArticleSimple;

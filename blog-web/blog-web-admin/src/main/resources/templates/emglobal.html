@@ -1,10 +1,4 @@
-<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-</head>
-
-<body>
     <div th:fragment="em-global">
         <link rel="stylesheet" th:href="@{/webjars/element/css/index.css}">
         <link rel="stylesheet" th:href="@{/webjars/icon-font/iconfont.css}">
@@ -26,15 +20,17 @@
         <link rel="stylesheet" th:href="@{/css/messenger-theme-flat.css}">
         <link rel="stylesheet" th:href="@{/css/location-sel.css}">
 
+    </div>
+    <div th:fragment="em-global-js">
+        <script th:src="@{/js/contants.js}"></script>
+        <script th:src="@{/js/url.js}"></script>
+        <script th:src="@{/js/genutils.js}"></script>
+        <script th:src="@{/js/blog.js}"></script>
+        <script th:src="@{/js/commons-tool.js}"></script>
         <script th:src="@{/webjars/element/js/index.js}"></script>
         <script th:src="@{/webjars/vue/vue.js}"></script>
         <script th:src="@{/webjars/axios/js/axios.min.js}"></script>
-        <script th:src="@{/js/contants.js}"></script>
         <script th:src="@{/js/axios.interceptor.js}"></script>
-        <script th:src="@{/js/genutils.js}"></script>
-        <script th:src="@{/js/url.js}"></script>
-        <script th:src="@{/js/blog.js}"></script>
-        <script th:src="@{/js/commons-tool.js}"></script>
         <!--Global JS-->
         <script th:src="@{/js/jquery-1.11.1.min.js}"></script>
         <script th:src="@{/js/bootstrap.min.js}"></script>
@@ -43,6 +39,8 @@
         <script th:src="@{/js/pace.min.js}"></script>
         <script th:src="@{/js/jquery.fullscreen-min.js}"></script>
 <!--        <script th:src="@{/js/app.js}"></script>-->
+        <!--Utils JS-->
+        <script th:src="@{/js/utils/validate.js}"></script>
         <!--Page Level JS for Demo-->
         <script th:src="@{/js/underscore-min.js}"></script>
         <script th:src="@{/js/backbone-min.js}"></script>
@@ -52,9 +50,7 @@
         <!--Page Level JS for Demo-->
         <script th:src="@{/js/location-sel.js}"></script>
         <script th:src="@{/js/theme-sel.js}"></script>
-        <script th:src="@{/js/demo.js}"></script>
-        <script th:src="@{/js/demo-messages.js}"></script>
+<!--        <script th:src="@{/js/demo.js}"></script>-->
+<!--        <script th:src="@{/js/demo-messages.js}"></script>-->
     </div>
-</body>
-
 </html>

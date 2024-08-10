@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.posin.manage.dao.AdminMenuMapper">
+<mapper namespace="com.posin.manage.mapper.AdminMenuMapper">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.posin.blog.entity.AdminMenu">
@@ -43,7 +43,7 @@
     <resultMap id="menuTreeResult" type="com.posin.blog.entity.AdminMenu" extends="BaseResultMap">
         <collection property="childs"
                     column="{parentId=menu_id}"
-                    select="com.posin.manage.dao.AdminMenuMapper.querySubMenuList"/>
+                    select="com.posin.manage.mapper.AdminMenuMapper.querySubMenuList"/>
     </resultMap>
 
     <select id="querySubMenuList" resultMap="BaseResultMap">
@@ -85,7 +85,7 @@
     <resultMap id="completeMenuWebTreeResult" type="com.posin.blog.dto.MenuTreeDTO" extends="BaseMenuWebTree">
         <collection property="children"
                     column="{parentId=module_id}"
-                    select="com.posin.manage.dao.AdminMenuMapper.querySubMenuTree"/>
+                    select="com.posin.manage.mapper.AdminMenuMapper.querySubMenuTree"/>
     </resultMap>
 
     <select id="queryCompleteMenuTree" parameterType="com.posin.blog.entity.AdminMenu" resultMap="completeMenuWebTreeResult">
@@ -118,6 +118,11 @@
         select perms
         from blog_menu
         where menu_id in (select menu_id from blog_role_menu where role_id in (select role_id from blog_user_role where user_id=#{uid}))
+    </select>
+
+    <select id="checkMenuNameUnique" resultMap="BaseMenuWebTree">
+        <include refid="selectMenuObj"/>
+        where menu_name =#{menuName} and parent_id=#{parentId}
     </select>
 
 </mapper>

@@ -3,7 +3,7 @@ package com.posin.manage.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.posin.common.core.utils.StringUtils;
-import com.posin.manage.dao.ArticleSimpleMapper;
+import com.posin.manage.mapper.ArticleSimpleMapper;
 import com.posin.manage.model.ArticleSimple;
 import com.posin.manage.service.IArticleService;
 import org.springframework.stereotype.Service;

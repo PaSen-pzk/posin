@@ -2,7 +2,7 @@ package com.posin.manage.security.service;
 
 import com.posin.blog.pojo.AdminUser;
 import com.posin.blog.security.model.LoginUser;
-import com.posin.manage.dao.AdminMenuMapper;
+import com.posin.manage.mapper.AdminMenuMapper;
 import com.posin.manage.mapper.SysRoleMapper;
 import com.posin.manage.mapper.SysUserMapper;
 import com.posin.manage.mapper.SysUserRoleMapper;

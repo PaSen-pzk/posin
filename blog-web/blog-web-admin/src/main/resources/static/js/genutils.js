@@ -314,7 +314,7 @@ function notifyMsg(message, type, dura, app) {
  * 获取AccessToken，存储在sessionStorage
  */
 function getLocalAccessToken() {
-    return window.sessionStorage.getItem("X-AUTH-TOKEN");
+    return window.sessionStorage.getItem(KEY_CONSTANTS.STORAGE_AUTH_TOKEN);
 }
 /**
  * 数据增加foreach

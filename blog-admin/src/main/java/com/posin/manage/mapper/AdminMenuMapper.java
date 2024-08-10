@@ -1,4 +1,4 @@
-package com.posin.manage.dao;
+package com.posin.manage.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.posin.blog.entity.AdminMenu;
@@ -23,4 +23,6 @@ public interface AdminMenuMapper extends BaseMapper<AdminMenu> {
     List<AdminMenu> queryCompleteMenuTree(AdminMenu menu);
 
     List<String> getAuthority(@Param("uid")String uid);
+
+    AdminMenu checkMenuNameUnique(@Param("menuName")String menuName, @Param("parentId")String parentId);
 }

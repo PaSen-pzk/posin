@@ -32,6 +32,7 @@
 
 <body>
     <th:block th:replace="emglobal::em-global"></th:block>
+    <th:block th:replace="emglobal::em-global-js"></th:block>
     <section class="container animated fadeInUp">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -40,36 +41,36 @@
                         <div class="brand">
                             <a href="index.html" class="logo">
                                 <i class="icon-layers"></i>
-                                <span>NEU</span>BOARD</a>
+                                <span>内容</span>管理平台</a>
                         </div>
                     </header>
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title">
-                           Sign In
+                           登录
                         </h3>
                         </div>
                         <div class="panel-body">
-                            <p> Login to access your account.</p>
+                            <p> 请输入账号&密码访问您的帐户</p>
                             <form class="form-horizontal" role="form">
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="text" class="form-control" id="username" placeholder="Username">
+                                        <input type="text" class="form-control" id="username" placeholder="账号">
                                         <i class="fa fa-user"></i>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <input type="password" class="form-control" id="password" placeholder="Password">
+                                        <input type="password" class="form-control" id="password" placeholder="密码">
                                         <i class="fa fa-lock"></i>
-                                        <a href="javascript:void(0)" class="help-block">Forgot Your Password?</a>
+                                        <a href="javascript:void(0)" class="help-block">忘记密码?</a>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        <a href="javascript:void(0)" class="btn btn-primary btn-block login-button">Sign in</a>
+                                        <a href="javascript:void(0)" class="btn btn-primary btn-block login-button">登录</a>
                                         <hr>
-                                        <a href="pages-sign-up.html" class="btn btn-default btn-block">Not a member? Sign Up</a>
+                                        <a href="pages-sign-up.html" class="btn btn-default btn-block">没有账号? 注册</a>
                                     </div>
                                 </div>
                             </form>
@@ -100,12 +101,12 @@
                 username: username,
                 password: password
             }
-            axios.post(getDataBaseUrl().concat(ADMIN_SERVER.SYS_LOGIN), param).then(function (response) {
+            axios.post(ADMIN_SERVER.SYS_LOGIN, param).then(function (response) {
                 console.log(response.data)
                 let res = response.data;
                 if(res.code == SERVICE_RESPONSE.SUCCESS.CODE){
                     console.log("登录成功")
-                    sessionStorage.setItem("X-AUTH-TOKEN", res.data.token);
+                    sessionStorage.setItem(KEY_CONSTANTS.STORAGE_AUTH_TOKEN, res.data.token);
                     window.location.href = getPageBaseUrl().concat("/index");
                     history.pushState(null, null, window.location.href);
                 } else {

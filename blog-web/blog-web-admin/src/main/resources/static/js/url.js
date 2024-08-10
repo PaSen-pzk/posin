@@ -5,3 +5,7 @@ function getDataBaseUrl() {
 function getPageBaseUrl() {
     return applicationUrlPath.adminUiUrlPath;
 }
+
+function buildApiUrl(router) {
+    return getDataBaseUrl().concat(router);
+}

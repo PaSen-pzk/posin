@@ -109,7 +109,7 @@ public class StdResultVo<T> {
      */
     public static StdResultVo error(String msg)
     {
-        return StdResultVo.error(msg, null);
+        return StdResultVo.error(HttpStatus.ERROR, msg);
     }
 
     /**

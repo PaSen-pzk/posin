@@ -21,9 +21,7 @@
         <module>blog-article</module>
         <module>blog-album</module>
         <module>blog-contact</module>
-        <module>blog-web-starter</module>
         <module>blog-model</module>
-
         <module>blog-security</module>
         <module>blog-common</module>
         <module>blog-web</module>

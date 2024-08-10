@@ -1,5 +1,6 @@
 package com.posin.manage.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.posin.blog.pojo.AdminUser;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * @description
  */
 @Repository
-public interface SysUserMapper {
+public interface SysUserMapper extends BaseMapper<AdminUser> {
 
     @Select("SELECT * from blog_user where user_name=#{username}")
     AdminUser queryByUserName(@Param("username") String username);

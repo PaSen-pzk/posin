@@ -19,4 +19,9 @@ public class SysUserController {
     public ModelAndView list() {
         return new ModelAndView("components/sys/userManage");
     }
+
+    @GetMapping("/account")
+    public ModelAndView userInfo() {
+        return new ModelAndView("components/sys/account");
+    }
 }
